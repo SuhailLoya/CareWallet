@@ -1,3 +1,4 @@
+import { Typography } from '@mui/material';
 import classes from './DonationHistory.module.css'
 import { DataGrid, gridClasses } from '@mui/x-data-grid';
 
@@ -19,6 +20,7 @@ const DonationHistory = (props) => {
     return (
         <div className={classes.overlay} onClick={props.closeModal}>
             <div className={classes.popup} >
+                <Typography variant='h4'>Donation History</Typography>
                 <DataGrid sx={{ m: 1,[`& .${gridClasses.cell}:focus, & .${gridClasses.cell}:focus-within`]: {
                 outline: 'none',},[`& .${gridClasses.columnHeader}:focus, & .${gridClasses.columnHeader}:focus-within`]:{outline: 'none',}, 
                 }} rows={rows} columns={columns}/>
