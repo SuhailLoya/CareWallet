@@ -3,12 +3,18 @@ import classes from "./DonationDetails.module.css";
 import DonationHistory from "./DonationHistory/DonationHistory";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
-import { Typography } from "@mui/material";
+import { Typography, LinearProgress } from "@mui/material";
 import Grid from "@mui/material/Grid";
+import FileCopyIcon from "@mui/icons-material/FileCopy";
+import ShareIcon from "@mui/icons-material/Share";
+import HistoryIcon from "@mui/icons-material/History";
+
 const dummyDetail = {
   title: "Bring Abbas Back Home",
   imageURL:
     "https://th.bing.com/th/id/R.b7b329d535dfb28ec56e54b9d080eeb3?rik=pQGrW27P%2baxQWg&riu=http%3a%2f%2fvirginiazoo.org%2fwp-content%2fuploads%2f2013%2f03%2fred-panda-1-e1480367081955.jpg&ehk=TxExe8MRYO6F5%2bz5yWNBVuEogyq2%2fepjeMEO8TVP2QM%3d&risl=&pid=ImgRaw&r=0",
+  totalXRPGoal: 10000,
+  donatedXRP: 4000,
 };
 
 const DonationDetails = () => {
@@ -36,12 +42,12 @@ const DonationDetails = () => {
         alignItems="center"
         spacing={4}
       >
-        <Button variant="contained" onClick={openModal}>
-          Donation History
-        </Button>
-        <Button size="large" variant="contained" onClick={onDonateClicked}>
-          Donate Now!!!
-        </Button>
+        {/* <Button variant="contained" onClick={openModal}>
+		  Donation History
+		</Button>
+		<Button size="large" variant="contained" onClick={onDonateClicked}>
+		  Donate Now!!!
+		</Button> */}
       </Stack>
       <Typography
         variant="h3"
@@ -62,14 +68,74 @@ const DonationDetails = () => {
             style={{ width: "100%", height: "100%", objectFit: "cover" }}
           />
         </Grid>
-
         {/* Second Grid Item (40%) */}
-        <Grid item xs={5}>
-          {/* Content for the second grid item */}
-          {/* Replace this with your content */}
-          <div style={{ backgroundColor: "lightgreen", height: "100px" }}>
-            Grid Item 2 (40%)
+        {/* Second Grid Item (40%) */}
+        <Grid item xs={5} container direction="column" alignItems="flex-start">
+          {/* Left-aligned "Raised" text */}
+          <Typography variant="h5" gutterBottom>
+            Raised: {donDet.donatedXRP} / {donDet.totalXRPGoal}{" "}
+            <strong>XRP</strong>
+          </Typography>
+
+          {/* Centered content */}
+          <div
+            style={{ width: "100%", display: "flex", justifyContent: "center" }}
+          >
+            {/* Progress bar representing donated XRP */}
+            <LinearProgress
+              variant="determinate"
+              value={(donDet.donatedXRP / donDet.totalXRPGoal) * 100}
+              color="primary"
+              style={{
+                marginBottom: "10px",
+                width: "100%", // Set the width to fill the entire space
+                borderRadius: "10px", // Apply rounded corners
+                height: "15px",
+              }}
+            />
           </div>
+
+          {/* Material UI buttons */}
+          <div
+            style={{
+              display: "flex",
+              width: "100%",
+              justifyContent: "space-between",
+              alignItems: "center",
+            }}
+          >
+            {/* Donate Now button */}
+            <Button
+              size="medium"
+              variant="contained"
+              onClick={onDonateClicked}
+              style={{ flex: "1 0 auto" }}
+            >
+              Donate Now!!!
+            </Button>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+              }}
+            >
+              {/* Donation History icon */}
+              <div style={{ display: "flex", alignItems: "center" }}>
+                <HistoryIcon
+                  onClick={openModal}
+                  style={{ cursor: "pointer", marginRight: "10px" }}
+                />
+                <ShareIcon
+                  onClick={() => console.log("share")}
+                  style={{ cursor: "pointer", marginRight: "10px" }}
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Share icon to copy URL to clipboard */}
+          {/* <ShareIcon onClick={copyToClipboard} style={{ cursor: "pointer" }} /> */}
         </Grid>
       </Grid>
       {popUp && <DonationHistory closeModal={closeModal} />}
