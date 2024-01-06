@@ -1,0 +1,43 @@
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #FFFFFF;
+    padding: 10px 50px;
+    font-size: 1.1rem;
+    
+}
+
+.navItem a:hover, .navItem a:active {
+    text-decoration: underline;
+}
+
+
+
+.brand {
+    font-size: 1.5em;
+    color: #333;
+}
+
+.nav {
+    list-style: none;
+    display: flex;
+}
+
+.navItem {
+    margin-left: 20px;
+}
+
+.navLink {
+    text-decoration: none;
+    color: #333;
+}
+
+.donateButton {
+    background-color: blue;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+  
