@@ -4,15 +4,14 @@ import classes from './Navbar.module.css';
 const Navbar = () => {
   return (
     <nav className={classes.navbar}>
-      <div className={classes.brand}>
-        <div to="/">CareWallet</div>
-      </div>
       <ul className={classes.nav}>
+        <li className={classes.brand}><NavLink style={{color: "black"}} to='/Home'>CareWallet</NavLink></li>
         <li className={classes.navItem}><NavLink style={{color: "black"}} to='/Home'>Home</NavLink></li>
         <li className={classes.navItem}><NavLink style={{color: "black"}} to='/Donate'>Donate</NavLink></li>
         <li className={classes.navItem}><NavLink style={{color: "black"}}>Contact</NavLink></li>
         <li className={classes.navItem}><NavLink style={{color: "black"}}>About us</NavLink></li>
       </ul>
+      <button className={classes.login}>Login</button>
     </nav>
   );
 };

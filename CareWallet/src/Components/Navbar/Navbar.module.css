@@ -1,28 +1,27 @@
 
 .navbar {
     display: flex;
-    justify-content: space-between;
     align-items: center;
     background-color: #FFFFFF;
     padding: 10px 50px;
     font-size: 1.1rem;
-    
+    justify-content: space-between;
 }
 
 .navItem a:hover, .navItem a:active {
     text-decoration: underline;
 }
 
-
-
 .brand {
     font-size: 1.5em;
     color: #333;
+    margin-right: 2rem;
 }
 
 .nav {
     list-style: none;
     display: flex;
+    align-items: center;
 }
 
 .navItem {
@@ -34,10 +33,25 @@
     color: #333;
 }
 
-.donateButton {
-    background-color: blue;
+
+.login {
+    background-color: #4CAF50;
     color: white;
-    padding: 5px 10px;
-    border-radius: 5px;
+    padding: 10px 20px;
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 30px; 
+    transition: background-color 0.3s, box-shadow 0.3s; 
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); 
+    right: ;
 }
-  
+
+.login:hover {
+    background-color: #45a049;
+    box-shadow: 0 6px 12px 0 rgba(0,0,0,0.3); 
+}
