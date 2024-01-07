@@ -31,12 +31,11 @@ const PatientCard = (props) => {
           }}>
             {props.CrowdfundingDetails}
           </Typography>
-          
-          <Box sx={{ width: '100%'}}>
-            ${props.FundsNeeded}
-            <LinearProgress variant="determinate" value={25}/>
-          </Box>
         </CardContent>
+        <Box sx={{padding: "1rem"}}>
+          ${props.FundsNeeded}
+          <LinearProgress variant="determinate" value={25} sx={{ padding: '0 1rem' }}/>
+        </Box>
       </CardActionArea>
     </Card>
     );
