@@ -13,7 +13,7 @@ const Navbar = () => {
       </ul>
       <ul className={classes.nav}>
         <li className={classes.navItem}><NavLink style={{color: "black"}} to='/mynft'>My NFTs</NavLink></li>
-        <li className={classes.navItem}><NavLink style={{color: "black"}} to='/mynft'>Chat</NavLink></li>
+        <li className={classes.navItem}><NavLink style={{color: "black"}} to='/mynft'>My Donations</NavLink></li>
       </ul>
       <button className={classes.login}>Login</button>
     </nav>
