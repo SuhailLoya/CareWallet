@@ -10,8 +10,10 @@ const Navbar = () => {
         <li className={classes.brand}><NavLink style={{color: "black"}} to='/Home'>CareWallet</NavLink></li>
         <li className={classes.navItem}><NavLink style={{color: "black"}} to='/Home'>Home</NavLink></li>
         <li className={classes.navItem}><NavLink style={{color: "black"}} to='/Donate'>Donate</NavLink></li>
-        <li className={classes.navItem}><NavLink style={{color: "black"}}>Contact</NavLink></li>
-        <li className={classes.navItem}><NavLink style={{color: "black"}}>About us</NavLink></li>
+      </ul>
+      <ul className={classes.nav}>
+        <li className={classes.navItem}><NavLink style={{color: "black"}} to='/mynft'>My NFTs</NavLink></li>
+        <li className={classes.navItem}><NavLink style={{color: "black"}} to='/mynft'>Chat</NavLink></li>
       </ul>
       <button className={classes.login}>Login</button>
     </nav>
