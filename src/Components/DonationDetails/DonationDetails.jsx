@@ -11,6 +11,7 @@ import HistoryIcon from "@mui/icons-material/History";
 import Paper from "@mui/material/Paper";
 import Divider from "@mui/material/Divider";
 import Box from "@mui/material/Box";
+import DonationForm from "../DonateForm/DonateForm";
 
 const dummyDetail = {
   title: "Bring Abbas Back Home",
@@ -27,6 +28,8 @@ const dummyDetail = {
 const DonationDetails = () => {
   const [popUp, setPopUp] = useState(false);
   const [donDet, setDonDet] = useState(dummyDetail);
+  const [DonationFormState, setOpenDonationForm] = useState(false);
+  const address = "0xc23491c0d59B16199867D0a343Def2bb036837CF" //curently is dummy data for smart contract address
 
   const openModal = () => {
     setPopUp(true);
@@ -36,9 +39,14 @@ const DonationDetails = () => {
     setPopUp(false);
   };
 
-  const onDonateClicked = () => {
-    console.log("Redirecting to donatin page");
+  const openDonationForm = () => {
+    setOpenDonationForm(true);
   };
+
+  const closeDonationForm = () => {
+    setOpenDonationForm(false)
+  }
+
   //#TODO: Centralised all the components
   return (
     <div
@@ -50,6 +58,7 @@ const DonationDetails = () => {
         flex: "1",
       }}
     >
+      {openDonationForm && <DonationForm address={address} closeDonationForm={closeDonationForm} isDonationForm={DonationFormState} openDonationForm={openDonationForm} />}
       <Stack spacing={4}>
         <Typography
           variant="h3"
@@ -161,7 +170,7 @@ const DonationDetails = () => {
                   size="medium"
                   variant="contained"
                   color="warning"
-                  onClick={onDonateClicked}
+                  onClick={openDonationForm}
                   style={{
                     flex: "1 0 auto",
                     borderRadius: 20,
