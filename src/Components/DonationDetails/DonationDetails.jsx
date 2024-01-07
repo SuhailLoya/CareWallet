@@ -1,5 +1,5 @@
 import { useState } from "react";
-import classes from "./DonationDetails.module.css";
+// import classes from "./DonationDetails.module.css";
 import DonationHistory from "./DonationHistory/DonationHistory";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
@@ -9,6 +9,8 @@ import FileCopyIcon from "@mui/icons-material/FileCopy";
 import ShareIcon from "@mui/icons-material/Share";
 import HistoryIcon from "@mui/icons-material/History";
 import Paper from "@mui/material/Paper";
+import Divider from "@mui/material/Divider";
+import Box from "@mui/material/Box";
 
 const dummyDetail = {
   title: "Bring Abbas Back Home",
@@ -16,8 +18,10 @@ const dummyDetail = {
     "https://th.bing.com/th/id/R.b7b329d535dfb28ec56e54b9d080eeb3?rik=pQGrW27P%2baxQWg&riu=http%3a%2f%2fvirginiazoo.org%2fwp-content%2fuploads%2f2013%2f03%2fred-panda-1-e1480367081955.jpg&ehk=TxExe8MRYO6F5%2bz5yWNBVuEogyq2%2fepjeMEO8TVP2QM%3d&risl=&pid=ImgRaw&r=0",
   target: 10000,
   amountCollected: 4000,
-  description: "Hello World",
-  deadline: "",
+  description:
+    "John, a resilient individual in his mid-fifties, is currently facing a critical health challenge—a deteriorating heart condition that necessitates immediate medical intervention. His doctors have diagnosed him with a severe cardiac ailment, compelling the need for an urgent heart bypass surgery. Over the past few months, John has struggled with escalating health complications, impeding his daily activities and profoundly impacting his quality of life. The upcoming surgery is a beacon of hope, a pivotal opportunity to restore his health and vitality, allowing him to resume a fulfilling life with his loved ones. However, the substantial expenses associated with this complex medical procedure, coupled with subsequent medication and post-operative care, have placed an overwhelming financial burden on John and his family.",
+  deadline: "", //supposedly they will send us as a string and we just display
+  hospitalName: "Kumaraguru s/o Sreenivasan",
 };
 
 const DonationDetails = () => {
@@ -59,19 +63,38 @@ const DonationDetails = () => {
         <Grid container spacing={2}>
           {/* First Grid Item (60%) */}
           <Grid item xs={7}>
-            {/* Image filling the entire width */}
-            <img
-              src={donDet.image}
-              alt="Image Details"
-              style={{
-                width: "100%",
-                height: "100%",
-                objectFit: "cover",
-                borderRadius: "2em",
-                aspectRatio: "2/1",
-                boxShadow: 5,
-              }}
-            />
+            <Stack spacing={2}>
+              {/* Image filling the entire width */}
+              <img
+                src={donDet.image}
+                alt="Image Details"
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
+                  borderRadius: "2em",
+                  aspectRatio: "2/1",
+                  boxShadow: 5,
+                }}
+              />
+              <Divider />
+
+              <Typography
+                variant="body1"
+                component="div"
+                style={{ fontWeight: "bold" }}
+              >
+                {donDet.hospitalName}
+                <Box sx={{ fontWeight: 700, m: 1 }} display="inline">
+                  is organising this Campaign
+                </Box>
+              </Typography>
+
+              <Divider />
+              <Typography variant="body1" style={{ textAlign: "justify" }}>
+                {donDet.description}
+              </Typography>
+            </Stack>
           </Grid>
           {/* Second Grid Item (40%) */}
           <Grid
