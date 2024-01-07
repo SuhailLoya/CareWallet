@@ -9,6 +9,7 @@ import FileCopyIcon from "@mui/icons-material/FileCopy";
 import ShareIcon from "@mui/icons-material/Share";
 import HistoryIcon from "@mui/icons-material/History";
 
+
 const dummyDetail = {
   title: "Bring Abbas Back Home",
   imageURL:
@@ -34,110 +35,121 @@ const DonationDetails = () => {
   };
   //#TODO: Centralised all the components
   return (
-    <div>
+    <div
+      style={{
+        paddingLeft: "10%",
+        paddingRight: "10%",
+        paddingTop: "20px",
+        // overflow: "scroll",
+        flex: "1",
+      }}
+    >
       <Stack
-        direction="row"
-        // divider={<Divider orientation="vertical" flexItem />}
-        justifyContent="space-around"
-        alignItems="center"
-        spacing={4}
+      spacing={4}
       >
-        {/* <Button variant="contained" onClick={openModal}>
-		  Donation History
-		</Button>
-		<Button size="large" variant="contained" onClick={onDonateClicked}>
-		  Donate Now!!!
-		</Button> */}
-      </Stack>
-      <Typography
-        variant="h3"
-        // fontWeight="medium"
-        component="div"
-        align="center"
-        fontWeight="bold"
-      >
-        {donDet.title}
-      </Typography>
-      <Grid container spacing={2}>
-        {/* First Grid Item (60%) */}
-        <Grid item xs={7}>
-          {/* Image filling the entire width */}
-          <img
-            src={donDet.imageURL}
-            alt="Image Details"
-            style={{ width: "100%", height: "100%", objectFit: "cover" }}
-          />
-        </Grid>
-        {/* Second Grid Item (40%) */}
-        {/* Second Grid Item (40%) */}
-        <Grid item xs={5} container direction="column" alignItems="flex-start">
-          {/* Left-aligned "Raised" text */}
-          <Typography variant="h5" gutterBottom>
-            Raised: {donDet.donatedXRP} / {donDet.totalXRPGoal}{" "}
-            <strong>XRP</strong>
-          </Typography>
-
-          {/* Centered content */}
-          <div
-            style={{ width: "100%", display: "flex", justifyContent: "center" }}
-          >
-            {/* Progress bar representing donated XRP */}
-            <LinearProgress
-              variant="determinate"
-              value={(donDet.donatedXRP / donDet.totalXRPGoal) * 100}
-              color="primary"
-              style={{
-                marginBottom: "10px",
-                width: "100%", // Set the width to fill the entire space
-                borderRadius: "10px", // Apply rounded corners
-                height: "15px",
-              }}
+        <Typography
+          variant="h3"
+          // fontWeight="medium"
+          component="div"
+          align="center"
+          fontWeight="bold"
+        >
+          {donDet.title}
+        </Typography>
+        <Grid container spacing={2}>
+          {/* First Grid Item (60%) */}
+          <Grid item xs={7}>
+            {/* Image filling the entire width */}
+            <img
+              src={donDet.imageURL}
+              alt="Image Details"
+              style={{ width: "100%", height: "100%", objectFit: "cover" }}
             />
-          </div>
-
-          {/* Material UI buttons */}
-          <div
-            style={{
-              display: "flex",
-              width: "100%",
-              justifyContent: "space-between",
-              alignItems: "center",
-            }}
+          </Grid>
+          {/* Second Grid Item (40%) */}
+          {/* Second Grid Item (40%) */}
+          <Grid
+            item
+            xs={5}
+            container
+            direction="column"
+            alignItems="flex-start"
           >
-            {/* Donate Now button */}
-            <Button
-              size="medium"
-              variant="contained"
-              onClick={onDonateClicked}
-              style={{ flex: "1 0 auto" }}
+            {/* Left-aligned "Raised" text */}
+            <Typography variant="h5" gutterBottom>
+              Raised: {donDet.donatedXRP} / {donDet.totalXRPGoal}{" "}
+              <strong>XRP</strong>
+            </Typography>
+
+            {/* Centered content */}
+            <div
+              style={{
+                width: "100%",
+                display: "flex",
+                justifyContent: "center",
+              }}
             >
-              Donate Now!!!
-            </Button>
+              {/* Progress bar representing donated XRP */}
+              <LinearProgress
+                variant="determinate"
+                value={(donDet.donatedXRP / donDet.totalXRPGoal) * 100}
+                color="primary"
+                style={{
+                  marginBottom: "10px",
+                  width: "100%", // Set the width to fill the entire space
+                  borderRadius: "10px", // Apply rounded corners
+                  height: "15px",
+                }}
+              />
+            </div>
+
+            {/* Material UI buttons */}
             <div
               style={{
                 display: "flex",
+                width: "100%",
                 justifyContent: "space-between",
                 alignItems: "center",
+                // backgroundColor: "red",
               }}
             >
-              {/* Donation History icon */}
-              <div style={{ display: "flex", alignItems: "center" }}>
-                <HistoryIcon
+              {/* Donate Now button */}
+              <Button
+                size="medium"
+                variant="contained"
+                color="warning"
+                onClick={onDonateClicked}
+                style={{ flex: "1 0 auto", borderRadius: 20, margin: 10, fontSize: "1rem"}}
+              >
+                Donate Now!!!
+              </Button>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  margin: 10,
+                }}
+              >
+                {/* Donation History icon */}
+                <div style={{ display: "flex", alignItems: "center" }}>
+                  {/* <HistoryIcon
                   onClick={openModal}
                   style={{ cursor: "pointer", marginRight: "10px" }}
-                />
-                <ShareIcon
-                  onClick={() => console.log("share")}
-                  style={{ cursor: "pointer", marginRight: "10px" }}
-                />
+                /> */}
+                  <ShareIcon
+                    onClick={() => console.log("share")}
+                    style={{ cursor: "pointer", marginRight: "10px" }}
+                  />
+                </div>
               </div>
             </div>
-          </div>
 
-          {/* Share icon to copy URL to clipboard */}
-          {/* <ShareIcon onClick={copyToClipboard} style={{ cursor: "pointer" }} /> */}
+            {/* Share icon to copy URL to clipboard */}
+            {/* <ShareIcon onClick={copyToClipboard} style={{ cursor: "pointer" }} /> */}
+          </Grid>
         </Grid>
-      </Grid>
+      </Stack>
       {popUp && <DonationHistory closeModal={closeModal} />}
     </div>
   );
