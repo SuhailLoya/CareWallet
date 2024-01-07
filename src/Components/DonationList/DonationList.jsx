@@ -15,6 +15,12 @@ const DonationPage = () => {
         <div>
             <div className={classes.Header}>
                 <div className={classes.br}></div>
+                <span className={classes.TextContainer}>
+                    <h1>Trusted Process</h1>
+                    <p>Each crowdfunding campaign is initiated by the hospitals on behalf of their patients to prevent fraudulent cases. 
+                        All donations are directed straight to the hospitals, ensuring no misuse of funds.
+                    </p>
+                </span>
                 <div className={classes.ImgContainer}>
                     <img src={hospitalPhoto}></img>
                     <img src={arrow} style={{width: "5%"}}></img>
@@ -22,12 +28,6 @@ const DonationPage = () => {
                     <img src={arrow} style={{width: "5%"}}></img>
                     <img src={internetPhoto}></img>
                 </div>
-                <span className={classes.TextContainer}>
-                    <h1>Trusted Process</h1>
-                    <p>Each crowdfunding campaign is initiated by the hospitals on behalf of their patients to prevent fraudulent cases. 
-                        All donations are directed straight to the hospitals, ensuring no misuse of funds.
-                    </p>
-                </span>
                 <div className={classes.br}></div>
             </div>
             <div className={classes.CardsContainer}>
