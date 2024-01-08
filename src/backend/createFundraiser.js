@@ -39,8 +39,8 @@ const createFundraiser = async (
     _owner,
     _title,
     _description,
-    _amountNeeded,
-    Math.ceil(_deadline / 1000)
+    ethers.parseEther(_amountNeeded.toString()),
+    _deadline
   );
 
   const gas = await createTx.estimateGas({ from: fromAddress });
