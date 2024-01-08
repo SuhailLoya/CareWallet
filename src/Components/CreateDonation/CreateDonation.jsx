@@ -22,7 +22,7 @@ export default function CreateDonation() {
       const title = formData.title;
       const description = formData.description;
       const amountNeeded = formData.target; // example value
-      const deadline = formData.deadline.unix(); // example value
+      const deadline = Math.round(formData.deadline.unix() / 1000); // example value
       console.log(deadline);
       await createFundraiser(owner, title, description, amountNeeded, deadline);
       console.log("Fundraiser created successfully");
@@ -32,6 +32,8 @@ export default function CreateDonation() {
   }
   
   const handleDateChange = (date) => {
+    console.log(date.unix());
+    console.log(Math.round(date.unix() / 1000));
     setFormData({ ...formData, deadline: date });
   };
   
