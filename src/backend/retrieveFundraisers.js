@@ -20,7 +20,7 @@ const retrieveFundraisers = async () => {
   web3.eth.accounts.wallet.add(myAccount);
   const fromAddress = myAccount.address;
 
-  console.log("Calling contract.create() from account:", fromAddress);
+  console.log("Fetching contracts from:", fromAddress);
 
   const contract = new web3.eth.Contract(contractABI, contractAddress);
 

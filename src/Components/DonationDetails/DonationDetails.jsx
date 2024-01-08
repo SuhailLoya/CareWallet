@@ -30,7 +30,7 @@ const DonationDetails = () => {
   const [donDet, setDonDet] = useState(dummyDetail);
   const [DonationFormState, setOpenDonationForm] = useState(false);
   const address = "0xc23491c0d59B16199867D0a343Def2bb036837CF"; //curently is dummy data for smart contract address
-
+//TODO: change address to acutal one to be passed thru query params or something.
   const openModal = () => {
     setPopUp(true);
   };

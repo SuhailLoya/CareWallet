@@ -9,8 +9,8 @@ import Logo from "../../assets/CareWalletLogo.png";
 import arrow from "../../assets/right-arrow.png";
 import { useEffect, useState } from "react";
 
-import createFundraiser from "../../backend/createFundraiser"
-import retrieveFundraisers from "../../backend/retrieveFundraisers"
+import createFundraiser from "../../backend/createFundraiser";
+import retrieveFundraisers from "../../backend/retrieveFundraisers";
 
 import { useSharedState } from "../../hooks/MyProvider";
 
@@ -18,9 +18,11 @@ const DonationPage = () => {
   const { sharedState, setSharedState } = useSharedState();
 
   async function getData() {
-    const stuff = 
+    console.log("fetching fundraiser information");
+    const fundraisers = await retrieveFundraisers();
+    console.log(fundraisers);
     setSharedState("initialised", true);
-    setSharedState("fundraisers", {});
+    setSharedState("fundraisers", fundraisers);
   }
 
   useEffect(() => {
@@ -49,14 +51,15 @@ const DonationPage = () => {
         <div className={classes.br}></div>
       </div>
       <div className={classes.CardsContainer}>
-        {dummyData.map((data, index) => (
+        {sharedState.fundraisers.map((data, index) => (
           <NavLink to="/donation/user1" style={{ width: "20%" }} key={index}>
             <PatientCard
-              FundsNeeded={data.FundsNeeded}
+              FundsNeeded={Number(data.amountNeeded)}
+              amountCollected={Number(data.amountCollected)}
               imgUrl={userPhoto}
-              title={data.Title}
-              CrowdfundingDetails={data.CrowdfundingDetails}
-              date={data.date}
+              title={data.title}
+              CrowdfundingDetails={data.description}
+              date={data.deadline}
             />
           </NavLink>
         ))}
