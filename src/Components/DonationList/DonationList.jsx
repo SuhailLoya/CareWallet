@@ -9,12 +9,16 @@ import Logo from "../../assets/CareWalletLogo.png";
 import arrow from "../../assets/right-arrow.png";
 import { useEffect, useState } from "react";
 
+import createFundraiser from "../../backend/createFundraiser"
+import retrieveFundraisers from "../../backend/retrieveFundraisers"
+
 import { useSharedState } from "../../hooks/MyProvider";
 
 const DonationPage = () => {
   const { sharedState, setSharedState } = useSharedState();
 
   async function getData() {
+    const stuff = 
     setSharedState("initialised", true);
     setSharedState("fundraisers", {});
   }
