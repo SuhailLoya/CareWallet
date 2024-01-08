@@ -2,6 +2,7 @@
 // dotenv.config();
 
 import { Web3 } from "web3";
+import { ethers } from "ethers";
 // import { readFileSync } from "fs";
 // const PRIVATE_KEY = process.env.PRIVATE_KEY;
 const PRIVATE_KEY = import.meta.env.VITE_PRIVATE_KEY;
@@ -38,8 +39,8 @@ const createFundraiser = async (
     _owner,
     _title,
     _description,
-    _amountNeeded,
-    _deadline
+    ethers.parseEther(_amountNeeded.toString()),
+    Math.ceil(_deadline / 1000)
   );
 
   const gas = await createTx.estimateGas({ from: fromAddress });
