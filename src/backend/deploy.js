@@ -1,6 +1,6 @@
 require("dotenv").config();
-const { Web3 } = require("web3");
-const fs = require("fs");
+import { Web3 } from "web3";
+import { readFileSync } from "fs";
 const PRIVATE_KEY = process.env.PRIVATE_KEY;
 
 // Connect to the EVM-compatible blockchain
@@ -8,10 +8,10 @@ const web3 = new Web3("https://rpc-evm-sidechain.xrpl.org/");
 
 // Replace these with your contract's ABI and bytecode
 const abiFilePath = "./contracts/output_directory/CareWalletFactory.abi";
-const contractABI = fs.readFileSync(abiFilePath);
+const contractABI = readFileSync(abiFilePath);
 
 const binFilePath = "./contracts/output_directory/CareWalletFactory.bin";
-const contractBytecode = "0x" + fs.readFileSync(binFilePath).toString();
+const contractBytecode = "0x" + readFileSync(binFilePath).toString();
 
 const deploy = async () => {
   const myAccount = web3.eth.accounts.privateKeyToAccount(PRIVATE_KEY);
