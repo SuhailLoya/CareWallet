@@ -12,6 +12,8 @@ import Paper from "@mui/material/Paper";
 import Divider from "@mui/material/Divider";
 import Box from "@mui/material/Box";
 import DonationForm from "../DonateForm/DonateForm";
+import { useSharedState } from "../../hooks/MyProvider";
+import { useParams } from "react-router-dom";
 
 const dummyDetail = {
   title: "Bring Abbas Back Home",
@@ -27,10 +29,20 @@ const dummyDetail = {
 
 const DonationDetails = () => {
   const [popUp, setPopUp] = useState(false);
-  const [donDet, setDonDet] = useState(dummyDetail);
+  const [donDet, setDonDet] = useState();
   const [DonationFormState, setOpenDonationForm] = useState(false);
-  const address = "0xc23491c0d59B16199867D0a343Def2bb036837CF"; //curently is dummy data for smart contract address
-//TODO: change address to acutal one to be passed thru query params or something.
+  // const address = "0xc23491c0d59B16199867D0a343Def2bb036837CF"; //curently is dummy data for smart contract address
+  //TODO: change address to acutal one to be passed thru query params or something.
+
+  const { fundraiserId } = useParams();
+  const { sharedState, setSharedState } = useSharedState();
+  useEffect(() => {
+    const newData = sharedState.fundraisers.find(
+      ({ id }) => id === fundraiserId
+    );
+    setDonDet(newData);
+  }, [fundraiserId]);
+
   const openModal = () => {
     setPopUp(true);
   };
@@ -47,6 +59,10 @@ const DonationDetails = () => {
     setOpenDonationForm(false);
   };
 
+  if (!donDet) {
+    return <></>;
+  }
+
   //#TODO: Centralised all the components
   return (
     <div
@@ -60,7 +76,7 @@ const DonationDetails = () => {
     >
       {openDonationForm && (
         <DonationForm
-          address={address}
+          address={donDet.owner}
           closeDonationForm={closeDonationForm}
           isDonationForm={DonationFormState}
           openDonationForm={openDonationForm}
@@ -136,8 +152,8 @@ const DonationDetails = () => {
             >
               {/* Left-aligned "Raised" text */}
               <Typography variant="h5" gutterBottom>
-                Raised: {donDet.amountCollected} / {donDet.target}{" "}
-                <strong>XRP</strong>
+                Raised: {Number(donDet.amountCollected)} /{" "}
+                {Number(donDet.amountNeeded)} <strong>XRP</strong>
               </Typography>
 
               {/* Centered content */}
@@ -151,7 +167,11 @@ const DonationDetails = () => {
                 {/* Progress bar representing donated XRP */}
                 <LinearProgress
                   variant="determinate"
-                  value={(donDet.amountCollected / donDet.target) * 100}
+                  value={
+                    (Number(donDet.amountCollected) /
+                      Number(donDet.amountNeeded)) *
+                    100
+                  }
                   color="primary"
                   style={{
                     marginBottom: "10px",

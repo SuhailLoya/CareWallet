@@ -5,11 +5,19 @@ import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
 import LinearProgress from "@mui/material/LinearProgress";
 import Box from "@mui/material/Box";
+import { useNavigate } from "react-router-dom";
 
 const PatientCard = props => {
+  const navigate = useNavigate();
+
+  const handleCardClick = event => {
+    navigate(`/donation/${props.fundraiserId}`);
+    // console.log("clicked");
+  };
+
   return (
     <Card sx={{ maxWidth: "100%", margin: 1 }}>
-      <CardActionArea>
+      <CardActionArea onClick={handleCardClick}>
         <CardMedia
           component="img"
           height="200"
