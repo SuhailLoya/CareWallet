@@ -52,7 +52,8 @@ const DonationPage = () => {
       </div>
       <div className={classes.CardsContainer}>
         {sharedState.fundraisers.map((data, index) => (
-          <NavLink to="/donation/user1" style={{ width: "20%" }} key={index}>
+          <>
+            {/*<NavLink to="/donation/user1" style={{ width: "20%" }} key={index}>*/}
             <PatientCard
               FundsNeeded={Number(data.amountNeeded)}
               amountCollected={Number(data.amountCollected)}
@@ -60,8 +61,10 @@ const DonationPage = () => {
               title={data.title}
               CrowdfundingDetails={data.description}
               date={data.deadline}
+              fundraiserId={data.id}
             />
-          </NavLink>
+            {/* </NavLink> */}
+          </>
         ))}
       </div>
     </div>
