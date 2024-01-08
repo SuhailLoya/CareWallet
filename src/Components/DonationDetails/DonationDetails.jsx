@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 // import classes from "./DonationDetails.module.css";
 import DonationHistory from "./DonationHistory/DonationHistory";
 import Stack from "@mui/material/Stack";
@@ -29,7 +29,7 @@ const DonationDetails = () => {
   const [popUp, setPopUp] = useState(false);
   const [donDet, setDonDet] = useState(dummyDetail);
   const [DonationFormState, setOpenDonationForm] = useState(false);
-  const address = "0xc23491c0d59B16199867D0a343Def2bb036837CF" //curently is dummy data for smart contract address
+  const address = "0xc23491c0d59B16199867D0a343Def2bb036837CF"; //curently is dummy data for smart contract address
 
   const openModal = () => {
     setPopUp(true);
@@ -44,8 +44,8 @@ const DonationDetails = () => {
   };
 
   const closeDonationForm = () => {
-    setOpenDonationForm(false)
-  }
+    setOpenDonationForm(false);
+  };
 
   //#TODO: Centralised all the components
   return (
@@ -58,7 +58,14 @@ const DonationDetails = () => {
         flex: "1",
       }}
     >
-      {openDonationForm && <DonationForm address={address} closeDonationForm={closeDonationForm} isDonationForm={DonationFormState} openDonationForm={openDonationForm} />}
+      {openDonationForm && (
+        <DonationForm
+          address={address}
+          closeDonationForm={closeDonationForm}
+          isDonationForm={DonationFormState}
+          openDonationForm={openDonationForm}
+        />
+      )}
       <Stack spacing={4}>
         <Typography
           variant="h3"
