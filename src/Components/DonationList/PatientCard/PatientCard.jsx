@@ -54,7 +54,9 @@ const PatientCard = props => {
             value={
               props.amountCollected === 0
                 ? 0
-                : (props.amountCollected / props.FundsNeeded) * 100
+                : (props.amountCollected /
+                    (props.FundsNeeded + props.amountCollected)) *
+                  100
             }
             sx={{ padding: "0 1rem" }}
           />

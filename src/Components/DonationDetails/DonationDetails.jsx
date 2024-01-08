@@ -103,7 +103,7 @@ const DonationDetails = () => {
     >
       {openDonationForm && (
         <DonationForm
-          address={donDet.owner}
+          address={donDet.id}
           closeDonationForm={closeDonationForm}
           isDonationForm={DonationFormState}
           openDonationForm={openDonationForm}
@@ -196,7 +196,8 @@ const DonationDetails = () => {
                   variant="determinate"
                   value={
                     (Number(donDet.amountCollected) /
-                      Number(donDet.amountNeeded)) *
+                      Number(donDet.amountNeeded) +
+                      Number(donDet.amountCollected)) *
                     100
                   }
                   color="primary"
