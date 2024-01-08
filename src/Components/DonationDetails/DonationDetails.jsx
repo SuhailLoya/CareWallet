@@ -14,6 +14,7 @@ import Box from "@mui/material/Box";
 import DonationForm from "../DonateForm/DonateForm";
 import { useSharedState } from "../../hooks/MyProvider";
 import { useParams } from "react-router-dom";
+import retrieveFundraisers from "../../backend/retrieveFundraisers";
 
 const dummyDetail = {
   title: "Bring Abbas Back Home",
@@ -36,12 +37,38 @@ const DonationDetails = () => {
 
   const { fundraiserId } = useParams();
   const { sharedState, setSharedState } = useSharedState();
+
+  async function getData() {
+    console.log(sharedState.initialised);
+    if (!sharedState.initialised) {
+      console.log("fetching fundraiser information");
+      const fundraisers = await retrieveFundraisers();
+      console.log(fundraisers);
+      setSharedState({
+        initialised: true,
+        fundraisers,
+      });
+    } else {
+      // console.log("Initialised liao");
+    }
+  }
+
   useEffect(() => {
-    const newData = sharedState.fundraisers.find(
-      ({ id }) => id === fundraiserId
-    );
-    setDonDet(newData);
-  }, [fundraiserId]);
+    getData();
+  }, []);
+
+  useEffect(() => {
+    if (
+      sharedState.initialised &&
+      fundraiserId &&
+      sharedState.fundraisers.length !== 0
+    ) {
+      const newData = sharedState.fundraisers.find(
+        ({ id }) => id === fundraiserId
+      );
+      setDonDet(newData);
+    }
+  }, [fundraiserId, sharedState.initialised]);
 
   const openModal = () => {
     setPopUp(true);
