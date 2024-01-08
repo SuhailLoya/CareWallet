@@ -43,6 +43,8 @@ export default function CreateDonation() {
           component="div"
           align="center"
           fontWeight="bold"
+          fontFamily="'Montserrat', sans-serif"
+          paddingBottom="1rem"
         >
           Create Donation Request
         </Typography>
