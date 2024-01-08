@@ -4,6 +4,7 @@ import Button from "@mui/material/Button";
 import { Typography, Paper, TextField, TextareaAutosize } from "@mui/material";
 // import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import createFundraiser from "../../backend/createFundraiser";
 
 export default function CreateDonation() {
   const [formData, setFormData] = useState({
@@ -11,9 +12,29 @@ export default function CreateDonation() {
     image: "",
     target: "",
     description: "",
-    deadline: "",
+    deadline: null,
     hospitalName: "",
   });
+  async function runCreateFundraiser() {
+    try {
+      // Replace these parameters with the actual values you want to pass
+      const owner = "0xa494b7Bb6332a70Fc6574431131ed08ADaD1F38a";
+      const title = formData.title;
+      const description = formData.description;
+      const amountNeeded = formData.target; // example value
+      const deadline = formData.deadline.unix(); // example value
+      console.log(deadline);
+      await createFundraiser(owner, title, description, amountNeeded, deadline);
+      console.log("Fundraiser created successfully");
+    } catch (error) {
+      console.error("Error in creating fundraiser:", error);
+    }
+  }
+  
+  const handleDateChange = (date) => {
+    setFormData({ ...formData, deadline: date });
+  };
+  
 
   const handleChange = event => {
     const { name, value } = event.target;
@@ -24,6 +45,7 @@ export default function CreateDonation() {
   const handleSubmit = event => {
     //TODO: Call appropriate API
     event.preventDefault();
+    runCreateFundraiser();
     // Perform actions with form data (e.g., send to backend)
     console.log(formData);
   };
@@ -87,7 +109,7 @@ export default function CreateDonation() {
                 type="number"
                 sx={{ borderRadius: "0.5em" }} // Rounded corners
                 helperText="in XRP"
-                inputProps={{ min: 0, step: "0.000001"}} // Set minimum value to 0
+                inputProps={{ min: 0, step: "1"}} // Set minimum value to 0
               />
 
               <TextareaAutosize
@@ -103,7 +125,7 @@ export default function CreateDonation() {
                 label="Deadline"
                 name="deadline"
                 value={formData.deadline}
-                onChange={handleChange}
+                onChange={handleDateChange}
                 variant="outlined"
                 type="date"
                 sx={{ borderRadius: "0.5em" }} // Rounded corners
