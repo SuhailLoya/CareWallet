@@ -108,7 +108,7 @@ export default function DonationForm(props) {
                 variant="outlined"
                 type="number"
                 helperText="in XRP"
-                inputProps={{ min: 0, step: "0.000000000001"}} // Set minimum value to 0
+                inputProps={{ min: 0, step: "0.000001"}} // Set minimum value to 0
               />
               <Button type="submit" variant="contained" color="primary" onSubmit={handleSubmit}>
                 Submit

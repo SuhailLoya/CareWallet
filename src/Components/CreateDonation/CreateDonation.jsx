@@ -85,6 +85,7 @@ export default function CreateDonation() {
                 type="number"
                 sx={{ borderRadius: "0.5em" }} // Rounded corners
                 helperText="in XRP"
+                inputProps={{ min: 0, step: "0.000001"}} // Set minimum value to 0
               />
 
               <TextareaAutosize
