@@ -39,7 +39,7 @@ const createFundraiser = async (
     _owner,
     _title,
     _description,
-    ethers.parseEther(_amountNeeded.toString()),
+    _amountNeeded,
     Math.ceil(_deadline / 1000)
   );
 
