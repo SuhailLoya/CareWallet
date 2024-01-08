@@ -5,14 +5,14 @@ const MyContext = React.createContext();
 
 // Create a provider component that holds the shared state
 const MyProvider = ({ children }) => {
-  const [sharedState, setSharedStateFull] = useState({
+  const [sharedState, setSharedState] = useState({
     initialised: false,
     fundraisers: [],
   });
 
-  function setSharedState(name, value) {
-    setSharedStateFull({ ...sharedState, [name]: value });
-  }
+  // function setSharedState(name, value) {
+  //   setSharedStateFull({ ...sharedState, [name]: value });
+  // }
   return (
     <MyContext.Provider value={{ sharedState, setSharedState }}>
       {children}

@@ -18,16 +18,25 @@ const DonationPage = () => {
   const { sharedState, setSharedState } = useSharedState();
 
   async function getData() {
-    console.log("fetching fundraiser information");
-    const fundraisers = await retrieveFundraisers();
-    console.log(fundraisers);
-    setSharedState("initialised", true);
-    setSharedState("fundraisers", fundraisers);
+    console.log(sharedState.initialised);
+    if (!sharedState.initialised) {
+      console.log("fetching fundraiser information");
+      const fundraisers = await retrieveFundraisers();
+      console.log(fundraisers);
+      setSharedState({
+        initialised: true,
+        fundraisers,
+      });
+    } else {
+      //   console.log("Initialised liao");
+    }
   }
 
   useEffect(() => {
     getData();
   }, []);
+
+  console.log(sharedState);
 
   return (
     <div>
@@ -53,17 +62,17 @@ const DonationPage = () => {
       <div className={classes.CardsContainer}>
         {sharedState.fundraisers.map((data, index) => (
           <>
-            {/*<NavLink to="/donation/user1" style={{ width: "20%" }} key={index}>*/}
-            <PatientCard
-              FundsNeeded={Number(data.amountNeeded)}
-              amountCollected={Number(data.amountCollected)}
-              imgUrl={userPhoto}
-              title={data.title}
-              CrowdfundingDetails={data.description}
-              date={data.deadline}
-              fundraiserId={data.id}
-            />
-            {/* </NavLink> */}
+            <div style={{ width: "20%" }} key={index}>
+              <PatientCard
+                FundsNeeded={Number(data.amountNeeded)}
+                amountCollected={Number(data.amountCollected)}
+                imgUrl={userPhoto}
+                title={data.title}
+                CrowdfundingDetails={data.description}
+                date={data.deadline}
+                fundraiserId={data.id}
+              />
+            </div>
           </>
         ))}
       </div>
