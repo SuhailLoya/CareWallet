@@ -196,7 +196,8 @@ const DonationDetails = () => {
                   variant="determinate"
                   value={
                     (Number(donDet.amountCollected) /
-                      Number(donDet.amountNeeded)) *
+                      Number(donDet.amountNeeded) +
+                      Number(donDet.amountCollected)) *
                     100
                   }
                   color="primary"
