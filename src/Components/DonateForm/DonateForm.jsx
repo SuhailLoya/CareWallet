@@ -9,56 +9,54 @@ import Web3 from 'web3';
 
 export default function DonationForm(props) {
 
-    const handleSubmit = async event => {
-        event.preventDefault();
-        
-        if (window.ethereum) {
-          try {
-            console.log(formData.target);
-            // Request account access
-            await window.ethereum.enable();
-            const web3 = new Web3(window.ethereum);
-    
-            const accounts = await web3.eth.getAccounts();
-            const account = accounts[0];
-    
-            // Define transaction parameters
-            const transactionParameters = {
-                to: props.address, // Sending to self for testing
-                value: web3.utils.toWei(formData.target, 'ether'), // Test amount
-                from: account,
-                gas: '21000',
-                maxPriorityFeePerGas: web3.utils.toWei('2', 'gwei'),
-                maxFeePerGas: web3.utils.toWei('100', 'gwei') // Adjust based on current network conditions
-            };
-    
-            // Send the transaction
-            web3.eth.sendTransaction(transactionParameters)
-            .on('transactionHash', (hash) => {
-              console.log('Transaction Hash:', hash);
-              // Handle transaction hash
-            })
-            .on('confirmation', (confirmationNumber, receipt) => {
-                    //24 confimrations
-                    console.log('First Transaction Confirmation:', receipt);
-                    // Handle first confirmation
-                    // Optionally, stop listening for further confirmations
-                
-            })
-            .on('error', (error) => {
-              console.error('Transaction error:', error);
-              // Handle errors
-              // Notify user of failure
-            });
-            props.closeDonationForm();
-      } catch (error) {
-        console.error('Error:', error);
-        // Handle errors, such as MetaMask not being installed
+  const handleSubmit = async event => {
+      event.preventDefault();
+      
+      if (window.ethereum) {
+        try {
+          console.log(props.address);
+          console.log(formData.target);
+          // Request account access
+          await window.ethereum.enable();
+          const web3 = new Web3(window.ethereum);
+  
+          const accounts = await web3.eth.getAccounts();
+          const account = accounts[0];
+  
+          // Define transaction parameters
+          const transactionParameters = {
+              to: props.address, // Sending to self for testing
+              value: web3.utils.toWei(formData.target, 'ether'), // Test amount
+              from: account,
+          };
+  
+          // Send the transaction
+          web3.eth.sendTransaction(transactionParameters)
+          .on('transactionHash', (hash) => {
+            console.log('Transaction Hash:', hash);
+            // Handle transaction hash
+          })
+          .on('confirmation', (confirmationNumber, receipt) => {
+                  //24 confimrations
+                  console.log('First Transaction Confirmation:', receipt);
+                  // Handle first confirmation
+                  // Optionally, stop listening for further confirmations
+              
+          })
+          .on('error', (error) => {
+            console.error('Transaction error:', error);
+            // Handle errors
+            // Notify user of failure
+          });
+          props.closeDonationForm();
+    } catch (error) {
+      console.error('Error:', error);
+      // Handle errors, such as MetaMask not being installed
+    }
+      } else {
+        console.log('MetaMask is not installed!');
       }
-        } else {
-          console.log('MetaMask is not installed!');
-        }
-      };
+    };
 
     const [formData, setFormData] = useState({
         title: "",
