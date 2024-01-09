@@ -10,11 +10,13 @@ import Alert from "@mui/material/Alert";
 import AlertTitle from "@mui/material/AlertTitle";
 import { Helmet } from "react-helmet";
 import { useNavigate } from "react-router-dom";
+import { useSharedState } from "../../hooks/MyProvider";
 
 export default function CreateDonation() {
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [isFail, setisFail] = useState(false);
+  const { sharedState, setSharedState } = useSharedState();
 
   const navigate = useNavigate();
 
@@ -38,6 +40,7 @@ export default function CreateDonation() {
       console.log("Fundraiser created successfully");
       // setIsLoading(false);
       setIsSuccess(true);
+      setSharedState({ ...sharedState, initialised: false });
       setTimeout(() => {
         navigate(`/donate`);
       }, 3000);

@@ -34,7 +34,7 @@ const DonationPage = () => {
 
   useEffect(() => {
     getData();
-  }, []);
+  }, [sharedState.initialised]);
 
   console.log(sharedState);
 

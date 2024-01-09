@@ -63,7 +63,7 @@ const DonationDetails = () => {
 
   useEffect(() => {
     getData();
-  }, []);
+  }, [sharedState.initialised]);
 
   useEffect(() => {
     if (
