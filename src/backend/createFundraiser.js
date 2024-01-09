@@ -7,7 +7,7 @@ import { ethers } from "ethers";
 // const PRIVATE_KEY = process.env.PRIVATE_KEY;
 const PRIVATE_KEY = import.meta.env.VITE_PRIVATE_KEY;
 
-import { contractABI, contractBytecode } from "./contracts/artefacts";
+import { contractABI } from "./contracts/artefacts";
 
 // Connect to the EVM-compatible blockchain
 const web3 = new Web3("https://rpc-evm-sidechain.xrpl.org/");

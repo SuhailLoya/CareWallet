@@ -2,7 +2,8 @@
 // dotenv.config();
 import { Web3 } from "web3";
 // import { readFileSync } from "fs";
-import { contractABI, contractBytecode } from "./contracts/artefacts";
+import { contractABI } from "./contracts/artefacts";
+import { ethers } from "ethers";
 
 // const PRIVATE_KEY = process.env.PRIVATE_KEY;
 const PRIVATE_KEY = import.meta.env.VITE_PRIVATE_KEY;
@@ -28,8 +29,7 @@ const retrieveFundraisers = async () => {
   const result = await contract.methods
     .get_CareWallet()
     .call({ from: fromAddress });
-  console.log(result);
-  return result;
+  return result.map(r => {return {...r, amountNeeded: ethers.formatEther(r.amountNeeded), amountCollected: ethers.formatEther(r.amountCollected)}});
 };
 
 //retrieveFundraisers().catch(console.error);

@@ -14,7 +14,6 @@ const web3 = new Web3("https://rpc-evm-sidechain.xrpl.org/");
 // const contractABI = readFileSync(abiFilePath);
 
 // const binFilePath = "./contracts/output_directory/CareWalletFactory.bin";
-const contractBytecode = "0x" + contractBytecode;
 
 const deploy = async () => {
   const myAccount = web3.eth.accounts.privateKeyToAccount(PRIVATE_KEY);
@@ -25,7 +24,7 @@ const deploy = async () => {
 
   const Contract = new web3.eth.Contract(contractABI);
   const deployTx = Contract.deploy({
-    data: contractBytecode,
+    data: "0x" + contractBytecode,
     arguments: [], // Any constructor arguments go here
   });
 
