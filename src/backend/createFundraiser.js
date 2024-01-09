@@ -1,19 +1,10 @@
-// import dotenv from "dotenv";
-// dotenv.config();
-
 import { Web3 } from "web3";
 import { ethers } from "ethers";
-// import { readFileSync } from "fs";
-// const PRIVATE_KEY = process.env.PRIVATE_KEY;
-const PRIVATE_KEY = import.meta.env.VITE_PRIVATE_KEY;
 
-// import { contractABI } from "./contracts/artefacts";
+const PRIVATE_KEY = import.meta.env.VITE_PRIVATE_KEY;
 
 // Connect to the EVM-compatible blockchain
 const web3 = new Web3("https://rpc-evm-sidechain.xrpl.org/");
-
-// Replace these with your contract's ABI and contract address
-// const abiFilePath = "./contracts/output_directory/CareWalletFactory.abi";
 
 const contractABI = JSON.parse(`[{"inputs":[{"internalType":"address","name":"_owner","type":"address"},{"internalType":"string","name":"_title","type":"string"},{"internalType":"string","name":"_description","type":"string"},{"internalType":"uint256","name":"_amountNeeded","type":"uint256"},{"internalType":"uint256","name":"_deadline","type":"uint256"}],"name":"create_CareWallet","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"","type":"uint256"}],"name":"fundraiserAddresses","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getNumberofCareWallets","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"get_CareWallet","outputs":[{"components":[{"internalType":"address","name":"id","type":"address"},{"internalType":"string","name":"title","type":"string"},{"internalType":"string","name":"description","type":"string"},{"internalType":"uint256","name":"deadline","type":"uint256"},{"internalType":"uint256","name":"amountCollected","type":"uint256"},{"internalType":"uint256","name":"amountNeeded","type":"uint256"}],"internalType":"struct CareWalletFactory.Fundraiser[]","name":"","type":"tuple[]"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"","type":"uint256"}],"name":"listOf_CareWallets","outputs":[{"internalType":"contract Test","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"setNumberofCareWallets","outputs":[],"stateMutability":"nonpayable","type":"function"}]`);
 
@@ -34,7 +25,6 @@ const createFundraiser = async (
 
   const contract = new web3.eth.Contract(contractABI, contractAddress);
 
-  // Assuming 'create' is a function in your smart contract
   const createTx = contract.methods.create_CareWallet(
     _owner,
     _title,
@@ -64,5 +54,4 @@ const createFundraiser = async (
   console.log("Transaction hash:", createReceipt.transactionHash);
 };
 
-//createFundraiser().catch(console.error);
 export default createFundraiser;

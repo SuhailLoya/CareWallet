@@ -1,17 +1,15 @@
 // SPDX-License-Identifier: UNLICENSED
-pragma solidity ^0.8.23;
-
+pragma solidity ^0.8.19;
 
 contract Test {
-
     address owner; //hospital
     address[] donors;
     uint256[] donations;
     uint256 donorCount;
 
-    string public title; 
+    string public title;
     string public description;
-    uint256 public deadline; 
+    uint256 public deadline;
     uint256 public amountCollected;
     uint256 public amountNeeded;
 
@@ -24,13 +22,16 @@ contract Test {
     }
 
     constructor(
-        address _owner, 
-        string memory _title, 
-        string memory _description, 
-        uint256 _amountNeeded, 
+        address _owner,
+        string memory _title,
+        string memory _description,
+        uint256 _amountNeeded,
         uint256 _deadline
     ) {
-        require(_deadline > block.timestamp, "The deadline should be a date in the future.");
+        require(
+            _deadline > block.timestamp,
+            "The deadline should be a date in the future."
+        );
         owner = _owner;
         title = _title;
         description = _description;
@@ -41,21 +42,25 @@ contract Test {
     }
 
     function sendFunds() private {
-        (bool sent,) = payable(owner).call{value: amountCollected}("");
+        (bool sent, ) = payable(owner).call{value: amountCollected}("");
 
-        if(sent) {
+        if (sent) {
             emit FundsSent(owner);
         }
     }
 
     function returnFunds() private {
         for (uint256 i = 0; i < donorCount; i++) {
-            (bool sent,) = payable(donors[i]).call{value: donations[i]}("");
+            (bool sent, ) = payable(donors[i]).call{value: donations[i]}("");
             require(sent, "Failed to refund");
         }
     }
 
-    function getDonors() view public returns (address[] memory, uint256[] memory) {
+    function getDonors()
+        public
+        view
+        returns (address[] memory, uint256[] memory)
+    {
         return (donors, donations);
     }
 
