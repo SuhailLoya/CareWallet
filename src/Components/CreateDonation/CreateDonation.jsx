@@ -5,8 +5,15 @@ import { Typography, Paper, TextField, TextareaAutosize } from "@mui/material";
 // import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import createFundraiser from "../../backend/createFundraiser";
+import CircularIndeterminate from "../DonationList/loadingCircle";
+import Alert from '@mui/material/Alert';
+import AlertTitle from '@mui/material/AlertTitle';
 
 export default function CreateDonation() {
+  const [isLoading, setIsLoading] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [isFail, setisFail] = useState(false);
+
   const [formData, setFormData] = useState({
     title: "",
     image: "",
@@ -18,15 +25,20 @@ export default function CreateDonation() {
   async function runCreateFundraiser() {
     try {
       // Replace these parameters with the actual values you want to pass
-      const owner = "0xa494b7Bb6332a70Fc6574431131ed08ADaD1F38a";
+      const owner = "0x0A1be59620527b6e660D54dFe1Be664258c1DbD7";
       const title = formData.title;
       const description = formData.description;
       const amountNeeded = formData.target; // example value
       const deadline = formData.deadline.unix(); // example value
       await createFundraiser(owner, title, description, amountNeeded, deadline);
       console.log("Fundraiser created successfully");
+      setIsLoading(false);
+      setIsSuccess(true);
     } catch (error) {
       console.error("Error in creating fundraiser:", error);
+      setIsLoading(false);
+      setisFail(true);
+
     }
   }
   
@@ -47,6 +59,7 @@ export default function CreateDonation() {
     //TODO: Call appropriate API
     event.preventDefault();
     runCreateFundraiser();
+    setIsLoading(true);
     // Perform actions with form data (e.g., send to backend)
     // console.log(formData);
   };
@@ -57,9 +70,28 @@ export default function CreateDonation() {
         paddingLeft: "10%",
         paddingRight: "10%",
         paddingTop: "20px",
-        flex: "1",
+        flex: "1"
       }}
-    >
+    > 
+      {
+        isLoading &&     
+        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+          <CircularIndeterminate />
+        </div>
+      }
+      { isSuccess && 
+        <Alert severity="success">
+          <AlertTitle>Success</AlertTitle>
+            This is a success alert — <strong>Crowdfunding successfully created!</strong>
+        </Alert>
+      }
+      {
+        isFail && 
+        <Alert severity="warning">
+          <AlertTitle>Warning</AlertTitle>
+          This is a warning alert — <strong>Failed to create crowdfunding!</strong>
+        </Alert>
+      }
       <Stack spacing={4}>
         <Typography
           variant="h3"

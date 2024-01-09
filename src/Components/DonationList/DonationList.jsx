@@ -8,9 +8,9 @@ import internetPhoto from "../../assets/internet.png";
 import Logo from "../../assets/CareWalletLogo.png";
 import arrow from "../../assets/right-arrow.png";
 import { useEffect, useState } from "react";
-
 import createFundraiser from "../../backend/createFundraiser";
 import retrieveFundraisers from "../../backend/retrieveFundraisers";
+import CircularIndeterminate from "./loadingCircle";
 
 import { useSharedState } from "../../hooks/MyProvider";
 
@@ -39,12 +39,12 @@ const DonationPage = () => {
   console.log(sharedState);
 
   return (
-    <div>
+    <div style={{backgroundColor: "#f5f5f5"}}>
       <div className={classes.Header}>
         <div className={classes.br}></div>
         <span className={classes.TextContainer}>
           <h1>Trusted Process</h1>
-          <p>
+          <p style={{textAlign: "center"}}>
             Each crowdfunding campaign is initiated by the hospitals on behalf
             of their patients to prevent fraudulent cases. All donations are
             directed straight to the hospitals, ensuring no misuse of funds.
@@ -59,7 +59,8 @@ const DonationPage = () => {
         </div>
         <div className={classes.br}></div>
       </div>
-      <div className={classes.CardsContainer}>
+      <div className={sharedState.initialised ? classes.CardsContainer : classes.CardsContainer2}>
+        {!sharedState.initialised && <CircularIndeterminate/>}
         {sharedState.fundraisers.map((data, index) => (
           <>
             <div style={{ width: "20%" }} key={index}>

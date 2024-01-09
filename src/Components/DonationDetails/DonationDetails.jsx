@@ -15,6 +15,10 @@ import DonationForm from "../DonateForm/DonateForm";
 import { useSharedState } from "../../hooks/MyProvider";
 import { useParams } from "react-router-dom";
 import retrieveFundraisers from "../../backend/retrieveFundraisers";
+import Alert from '@mui/material/Alert';
+import AlertTitle from '@mui/material/AlertTitle';
+import CircularIndeterminate from "../DonationList/loadingCircle";
+
 
 const dummyDetail = {
   title: "Bring Abbas Back Home",
@@ -32,6 +36,9 @@ const DonationDetails = () => {
   const [popUp, setPopUp] = useState(false);
   const [donDet, setDonDet] = useState();
   const [DonationFormState, setOpenDonationForm] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [isFail, setisFail] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   // const address = "0xc23491c0d59B16199867D0a343Def2bb036837CF"; //curently is dummy data for smart contract address
   //TODO: change address to acutal one to be passed thru query params or something.
 
@@ -107,8 +114,25 @@ const DonationDetails = () => {
           closeDonationForm={closeDonationForm}
           isDonationForm={DonationFormState}
           openDonationForm={openDonationForm}
+          setIsSuccess={setIsSuccess}
+          setisFail={setisFail}
+          setIsLoading={setIsLoading}
         />
       )}
+      { 
+        isSuccess && 
+        <Alert severity="success">
+          <AlertTitle>Success</AlertTitle>
+            This is a success alert — <strong>You have successfully donated!</strong>
+        </Alert>
+      }
+      {
+        isFail && 
+        <Alert severity="warning">
+          <AlertTitle>Warning</AlertTitle>
+          This is a warning alert — <strong>Failed to donate to crowdfunding!</strong>
+        </Alert>
+      }
       <Stack spacing={4}>
         <Typography
           variant="h3"
@@ -177,6 +201,10 @@ const DonationDetails = () => {
                 borderRadius: "2em",
               }}
             >
+              {isLoading && 
+                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+                  <CircularIndeterminate />
+                </div>}
               {/* Left-aligned "Raised" text */}
               <Typography variant="h5" gutterBottom>
                 Raised: {Number(donDet.amountCollected)} /{" "}

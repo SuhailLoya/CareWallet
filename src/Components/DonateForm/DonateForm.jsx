@@ -9,6 +9,7 @@ import Web3 from 'web3';
 
 export default function DonationForm(props) {
 
+
   const handleSubmit = async event => {
       event.preventDefault();
       
@@ -35,22 +36,30 @@ export default function DonationForm(props) {
           .on('transactionHash', (hash) => {
             console.log('Transaction Hash:', hash);
             // Handle transaction hash
+          props.setIsLoading(true);
           })
           .on('confirmation', (confirmationNumber, receipt) => {
                   //24 confimrations
                   console.log('First Transaction Confirmation:', receipt);
+                  props.setIsSuccess(true);
+                  props.setIsLoading(false);
                   // Handle first confirmation
                   // Optionally, stop listening for further confirmations
-              
           })
           .on('error', (error) => {
             console.error('Transaction error:', error);
+            props.setisFail(true);
+            props.setIsLoading(false);
             // Handle errors
             // Notify user of failure
           });
           props.closeDonationForm();
+          props.setIsLoading(false);
+
     } catch (error) {
       console.error('Error:', error);
+      props.setIsLoading(false);
+
       // Handle errors, such as MetaMask not being installed
     }
       } else {
