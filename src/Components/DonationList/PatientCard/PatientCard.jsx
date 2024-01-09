@@ -48,12 +48,16 @@ const PatientCard = props => {
           </Typography>
         </CardContent>
         <Box sx={{ padding: "1rem" }}>
-          { props.FundsNeeded === 0 ? "Target fufilled!" : `Target: ${props.amountCollected}/${props.FundsNeeded + props.amountCollected} XRP`}
+          {props.FundsNeeded === 0
+            ? "Target fufilled!"
+            : `Target: ${props.amountCollected}/${
+                props.FundsNeeded + props.amountCollected
+              } XRP`}
           <LinearProgress
             variant="determinate"
             value={
-              props.amountCollected === 0
-                ? 0
+              props.FundsNeeded === 0
+                ? 100
                 : (props.amountCollected /
                     (props.FundsNeeded + props.amountCollected)) *
                   100
