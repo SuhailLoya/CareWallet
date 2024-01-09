@@ -13,11 +13,9 @@
 
 
 .popup {
-    margin: 15% auto;
-    padding: 20px;
     background: white;
     border-radius: 5px;
-    width: 30%;
+    width: 100%;
     position: relative;
     z-index: 3;
 }
