@@ -22,8 +22,7 @@ export default function CreateDonation() {
       const title = formData.title;
       const description = formData.description;
       const amountNeeded = formData.target; // example value
-      const deadline = Math.round(formData.deadline.unix() / 1000); // example value
-      console.log(deadline);
+      const deadline = formData.deadline.unix(); // example value
       await createFundraiser(owner, title, description, amountNeeded, deadline);
       console.log("Fundraiser created successfully");
     } catch (error) {
@@ -32,8 +31,8 @@ export default function CreateDonation() {
   }
   
   const handleDateChange = (date) => {
-    console.log(date.unix());
-    console.log(Math.round(date.unix() / 1000));
+    // console.log(date.unix());
+    // console.log(Math.round(date.unix() / 1000));
     setFormData({ ...formData, deadline: date });
   };
   
@@ -41,7 +40,7 @@ export default function CreateDonation() {
   const handleChange = event => {
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
-    console.log(`${name}: ${value}`);
+    // console.log(`${name}: ${value}`);
   };
 
   const handleSubmit = event => {
@@ -49,7 +48,7 @@ export default function CreateDonation() {
     event.preventDefault();
     runCreateFundraiser();
     // Perform actions with form data (e.g., send to backend)
-    console.log(formData);
+    // console.log(formData);
   };
 
   return (
