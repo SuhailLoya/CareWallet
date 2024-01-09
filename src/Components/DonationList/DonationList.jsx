@@ -13,7 +13,7 @@ import retrieveFundraisers from "../../backend/retrieveFundraisers";
 import CircularIndeterminate from "./loadingCircle";
 
 import { useSharedState } from "../../hooks/MyProvider";
-
+import { Helmet } from "react-helmet";
 const DonationPage = () => {
   const { sharedState, setSharedState } = useSharedState();
 
@@ -39,12 +39,15 @@ const DonationPage = () => {
   console.log(sharedState);
 
   return (
-    <div style={{backgroundColor: "#f5f5f5"}}>
+    <div style={{ backgroundColor: "#f5f5f5" }}>
+      <Helmet>
+        <title>CareWallet - Donate</title>
+      </Helmet>
       <div className={classes.Header}>
         <div className={classes.br}></div>
         <span className={classes.TextContainer}>
           <h1>Trusted Process</h1>
-          <p style={{textAlign: "center"}}>
+          <p style={{ textAlign: "center" }}>
             Each crowdfunding campaign is initiated by the hospitals on behalf
             of their patients to prevent fraudulent cases. All donations are
             directed straight to the hospitals, ensuring no misuse of funds.
@@ -59,8 +62,14 @@ const DonationPage = () => {
         </div>
         <div className={classes.br}></div>
       </div>
-      <div className={sharedState.initialised ? classes.CardsContainer : classes.CardsContainer2}>
-        {!sharedState.initialised && <CircularIndeterminate/>}
+      <div
+        className={
+          sharedState.initialised
+            ? classes.CardsContainer
+            : classes.CardsContainer2
+        }
+      >
+        {!sharedState.initialised && <CircularIndeterminate />}
         {sharedState.fundraisers.map((data, index) => (
           <>
             <div style={{ width: "20%" }} key={index}>

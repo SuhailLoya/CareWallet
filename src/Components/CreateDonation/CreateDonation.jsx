@@ -6,8 +6,9 @@ import { Typography, Paper, TextField, TextareaAutosize } from "@mui/material";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import createFundraiser from "../../backend/createFundraiser";
 import CircularIndeterminate from "../DonationList/loadingCircle";
-import Alert from '@mui/material/Alert';
-import AlertTitle from '@mui/material/AlertTitle';
+import Alert from "@mui/material/Alert";
+import AlertTitle from "@mui/material/AlertTitle";
+import { Helmet } from "react-helmet";
 
 export default function CreateDonation() {
   const [isLoading, setIsLoading] = useState(false);
@@ -38,16 +39,14 @@ export default function CreateDonation() {
       console.error("Error in creating fundraiser:", error);
       setIsLoading(false);
       setisFail(true);
-
     }
   }
-  
-  const handleDateChange = (date) => {
+
+  const handleDateChange = date => {
     // console.log(date.unix());
     // console.log(Math.round(date.unix() / 1000));
     setFormData({ ...formData, deadline: date });
   };
-  
 
   const handleChange = event => {
     const { name, value } = event.target;
@@ -70,28 +69,38 @@ export default function CreateDonation() {
         paddingLeft: "10%",
         paddingRight: "10%",
         paddingTop: "20px",
-        flex: "1"
+        flex: "1",
       }}
-    > 
-      {
-        isLoading &&     
-        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+    >
+      <Helmet>
+        <title>CareWallet - Create Donation</title>
+      </Helmet>
+
+      {isLoading && (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
           <CircularIndeterminate />
         </div>
-      }
-      { isSuccess && 
+      )}
+      {isSuccess && (
         <Alert severity="success">
           <AlertTitle>Success</AlertTitle>
-            This is a success alert — <strong>Crowdfunding successfully created!</strong>
+          This is a success alert —{" "}
+          <strong>Crowdfunding successfully created!</strong>
         </Alert>
-      }
-      {
-        isFail && 
+      )}
+      {isFail && (
         <Alert severity="warning">
           <AlertTitle>Warning</AlertTitle>
-          This is a warning alert — <strong>Failed to create crowdfunding!</strong>
+          This is a warning alert —{" "}
+          <strong>Failed to create crowdfunding!</strong>
         </Alert>
-      }
+      )}
       <Stack spacing={4}>
         <Typography
           variant="h3"
@@ -134,7 +143,7 @@ export default function CreateDonation() {
                 type="number"
                 sx={{ borderRadius: "0.5em" }} // Rounded corners
                 helperText="in XRP"
-                inputProps={{ min: 0, step: "1"}} // Set minimum value to 0
+                inputProps={{ min: 0, step: "1" }} // Set minimum value to 0
               />
 
               <TextareaAutosize
