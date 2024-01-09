@@ -18,6 +18,7 @@ import retrieveFundraisers from "../../backend/retrieveFundraisers";
 import Alert from '@mui/material/Alert';
 import AlertTitle from '@mui/material/AlertTitle';
 import CircularIndeterminate from "../DonationList/loadingCircle";
+import dummyimage from "../../assets/hospitalimg.png"
 
 
 const dummyDetail = {
@@ -149,7 +150,7 @@ const DonationDetails = () => {
             <Stack spacing={2}>
               {/* Image filling the entire width */}
               <img
-                src={donDet.image}
+                src={dummyimage}
                 alt="Image Details"
                 style={{
                   width: "100%",

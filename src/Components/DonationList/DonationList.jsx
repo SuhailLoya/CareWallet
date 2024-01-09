@@ -2,7 +2,7 @@ import PatientCard from "./PatientCard/PatientCard";
 import classes from "./DonationList.module.css";
 import { NavLink } from "react-router-dom";
 import dummyData from "./dummydata.json";
-import userPhoto from "../../assets/anonymous.jpg";
+import userPhoto from "../../assets/dummyimg2.png";
 import hospitalPhoto from "../../assets/hospital.png";
 import internetPhoto from "../../assets/internet.png";
 import Logo from "../../assets/CareWalletLogo.png";

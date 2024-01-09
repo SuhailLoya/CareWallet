@@ -126,14 +126,6 @@ export default function CreateDonation() {
                 sx={{ borderRadius: "0.5em" }} // Rounded corners
               />
               <TextField
-                label="Image URL"
-                name="image"
-                value={formData.image}
-                onChange={handleChange}
-                variant="outlined"
-                sx={{ borderRadius: "0.5em" }} // Rounded corners
-              />
-              <TextField
                 label="Target Amount"
                 name="target"
                 value={formData.target}
