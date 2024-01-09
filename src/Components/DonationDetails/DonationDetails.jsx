@@ -21,6 +21,7 @@ import CircularIndeterminate from "../DonationList/loadingCircle";
 import dummyimage from "../../assets/hospitalimg.png"
 
 
+
 const dummyDetail = {
   title: "Bring Abbas Back Home",
   image:
@@ -177,6 +178,10 @@ const DonationDetails = () => {
               <Divider />
               <Typography variant="body1" style={{ textAlign: "justify" }}>
                 {donDet.description}
+              </Typography>
+              <Divider />
+              <Typography variant="body1" style={{ textAlign: "justify" }}>
+                <DonationHistory/>
               </Typography>
             </Stack>
           </Grid>

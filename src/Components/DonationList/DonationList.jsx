@@ -70,21 +70,23 @@ const DonationPage = () => {
         }
       >
         {!sharedState.initialised && <CircularIndeterminate />}
-        {sharedState.fundraisers.map((data, index) => (
-          <>
-            <div style={{ width: "20%" }} key={index}>
-              <PatientCard
-                FundsNeeded={Number(data.amountNeeded)}
-                amountCollected={Number(data.amountCollected)}
-                imgUrl={userPhoto}
-                title={data.title}
-                CrowdfundingDetails={data.description}
-                date={data.deadline}
-                fundraiserId={data.id}
-              />
-            </div>
-          </>
-        ))}
+        {sharedState.fundraisers.map((data, index) => {
+          if (Number(data.amountNeeded) !== 0) {
+            return (
+              <div style={{ width: "20%" }} key={index}>
+                <PatientCard
+                  FundsNeeded={Number(data.amountNeeded)}
+                  amountCollected={Number(data.amountCollected)}
+                  imgUrl={userPhoto}
+                  title={data.title}
+                  CrowdfundingDetails={data.description}
+                  date={data.deadline}
+                  fundraiserId={data.id}
+                />
+              </div>
+            );
+          }
+        })}
       </div>
     </div>
   );
