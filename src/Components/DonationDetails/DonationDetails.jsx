@@ -208,7 +208,7 @@ const DonationDetails = () => {
               {/* Left-aligned "Raised" text */}
               <Typography variant="h5" gutterBottom>
                 Raised: {Number(donDet.amountCollected)} /{" "}
-                {Number(donDet.amountNeeded)} <strong>XRP</strong>
+                {Number(donDet.amountNeeded) + Number(donDet.amountCollected)} <strong>XRP</strong>
               </Typography>
 
               {/* Centered content */}
@@ -224,8 +224,8 @@ const DonationDetails = () => {
                   variant="determinate"
                   value={
                     (Number(donDet.amountCollected) /
-                      Number(donDet.amountNeeded) +
-                      Number(donDet.amountCollected)) *
+                      (Number(donDet.amountNeeded) +
+                      Number(donDet.amountCollected))) *
                     100
                   }
                   color="primary"
