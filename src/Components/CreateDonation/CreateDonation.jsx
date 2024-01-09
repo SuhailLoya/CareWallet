@@ -9,11 +9,14 @@ import CircularIndeterminate from "../DonationList/loadingCircle";
 import Alert from "@mui/material/Alert";
 import AlertTitle from "@mui/material/AlertTitle";
 import { Helmet } from "react-helmet";
+import { useNavigate } from "react-router-dom";
 
 export default function CreateDonation() {
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [isFail, setisFail] = useState(false);
+
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     title: "",
@@ -33,8 +36,11 @@ export default function CreateDonation() {
       const deadline = formData.deadline.unix(); // example value
       await createFundraiser(owner, title, description, amountNeeded, deadline);
       console.log("Fundraiser created successfully");
-      setIsLoading(false);
+      // setIsLoading(false);
       setIsSuccess(true);
+      setTimeout(() => {
+        navigate(`/donate`);
+      }, 3000);
     } catch (error) {
       console.error("Error in creating fundraiser:", error);
       setIsLoading(false);
@@ -91,7 +97,9 @@ export default function CreateDonation() {
         <Alert severity="success">
           <AlertTitle>Success</AlertTitle>
           This is a success alert —{" "}
-          <strong>Crowdfunding successfully created!</strong>
+          <strong>
+            Crowdfunding successfully created! Navigating back to Donation
+          </strong>
         </Alert>
       )}
       {isFail && (
