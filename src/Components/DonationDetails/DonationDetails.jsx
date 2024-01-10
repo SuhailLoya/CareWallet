@@ -21,6 +21,7 @@ import CircularIndeterminate from "../DonationList/loadingCircle";
 import dummyimage from "../../assets/hospitalimg.png"
 
 
+
 const dummyDetail = {
   title: "Bring Abbas Back Home",
   image:
@@ -47,11 +48,11 @@ const DonationDetails = () => {
   const { sharedState, setSharedState } = useSharedState();
 
   async function getData() {
-    console.log(sharedState.initialised);
+    // console.log(sharedState.initialised);
     if (!sharedState.initialised) {
-      console.log("fetching fundraiser information");
+      // console.log("fetching fundraiser information");
       const fundraisers = await retrieveFundraisers();
-      console.log(fundraisers);
+      // console.log(fundraisers);
       setSharedState({
         initialised: true,
         fundraisers,
@@ -178,6 +179,10 @@ const DonationDetails = () => {
               <Typography variant="body1" style={{ textAlign: "justify" }}>
                 {donDet.description}
               </Typography>
+              <Divider />
+              <Typography variant="body1" style={{ textAlign: "justify" }}>
+                <DonationHistory/>
+              </Typography>
             </Stack>
           </Grid>
           {/* Second Grid Item (40%) */}
@@ -279,7 +284,6 @@ const DonationDetails = () => {
                   style={{ cursor: "pointer", marginRight: "10px" }}
                 /> */}
                     <ShareIcon
-                      onClick={() => console.log("share")}
                       style={{ cursor: "pointer", marginRight: "10px" }}
                     />
                   </div>

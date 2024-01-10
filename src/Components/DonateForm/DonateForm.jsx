@@ -15,8 +15,8 @@ export default function DonationForm(props) {
       
       if (window.ethereum) {
         try {
-          console.log(props.address);
-          console.log(formData.target);
+          // console.log(props.address);
+          // console.log(formData.target);
           // Request account access
           await window.ethereum.enable();
           const web3 = new Web3(window.ethereum);
@@ -34,13 +34,13 @@ export default function DonationForm(props) {
           // Send the transaction
           web3.eth.sendTransaction(transactionParameters)
           .on('transactionHash', (hash) => {
-            console.log('Transaction Hash:', hash);
+            // console.log('Transaction Hash:', hash);
             // Handle transaction hash
           props.setIsLoading(true);
           })
           .on('confirmation', (confirmationNumber, receipt) => {
                   //24 confimrations
-                  console.log('First Transaction Confirmation:', receipt);
+                  // console.log('First Transaction Confirmation:', receipt);
                   props.setIsSuccess(true);
                   props.setIsLoading(false);
                   // Handle first confirmation
@@ -63,7 +63,7 @@ export default function DonationForm(props) {
       // Handle errors, such as MetaMask not being installed
     }
       } else {
-        console.log('MetaMask is not installed!');
+        // console.log('MetaMask is not installed!');
       }
     };
 
