@@ -37,7 +37,7 @@ export default function CreateDonation() {
       const amountNeeded = formData.target; // example value
       const deadline = formData.deadline.unix(); // example value
       await createFundraiser(owner, title, description, amountNeeded, deadline);
-      console.log("Fundraiser created successfully");
+      // console.log("Fundraiser created successfully");
       // setIsLoading(false);
       setIsSuccess(true);
       setSharedState({ ...sharedState, initialised: false });
