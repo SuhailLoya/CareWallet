@@ -21,7 +21,7 @@ const createFundraiser = async (
   web3.eth.accounts.wallet.add(myAccount);
   const fromAddress = myAccount.address;
 
-  console.log("Calling contract.create() from account:", fromAddress);
+  // console.log("Calling contract.create() from account:", fromAddress);
 
   const contract = new web3.eth.Contract(contractABI, contractAddress);
 
@@ -47,11 +47,11 @@ const createFundraiser = async (
     PRIVATE_KEY
   );
 
-  console.log("Sending transaction...");
+  // console.log("Sending transaction...");
   const createReceipt = await web3.eth.sendSignedTransaction(
     createTransaction.rawTransaction
   );
-  console.log("Transaction hash:", createReceipt.transactionHash);
+  // console.log("Transaction hash:", createReceipt.transactionHash);
 };
 
 export default createFundraiser;

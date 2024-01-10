@@ -18,8 +18,8 @@ async function main() {
   const evmWallet = new _Wallet("0x" + PRIVATE_KEY, ethersClient);
 
   // Verify you have the right EVM wallet address
-  console.log("EVM Address:");
-  console.log(evmWallet.address);
+  // console.log("EVM Address:");
+  // console.log(evmWallet.address);
 
   // -----------
 
@@ -41,12 +41,12 @@ async function main() {
     bridgeData.result.account_objects[0].SignatureReward;
   const bridgeDataMin =
     bridgeData.result.account_objects[0].MinAccountCreateAmount;
-  console.log("Bridge signature reweard:");
-  console.log(bridgeDataSignatureReward);
-  console.log("Bridge account min:");
-  console.log(bridgeDataMin);
-  console.log("Bridge data:");
-  console.log(bridge);
+  // console.log("Bridge signature reweard:");
+  // console.log(bridgeDataSignatureReward);
+  // console.log("Bridge account min:");
+  // console.log(bridgeDataMin);
+  // console.log("Bridge data:");
+  // console.log(bridge);
 
   // lockingClient.disconnect()
 
@@ -64,8 +64,8 @@ async function main() {
   // // View it on the explorer:
   // // https://devnet.xrpl.org/accounts/r41mGaFCWUrFWErZHVP8REfATywumLvW1g
 
-  console.log("Wallet1:");
-  console.log(wallet1.classicAddress);
+  // console.log("Wallet1:");
+  // console.log(wallet1.classicAddress);
   // console.log("Wallet2:")
   // console.log(wallet2)
 
@@ -83,9 +83,9 @@ async function main() {
     return encodeAccountID(accountId);
   };
 
-  console.log(
-    "XRPL address representation: " + evmAddressToXrplAccount(evmWallet.address)
-  );
+  // console.log(
+  //   "XRPL address representation: " + evmAddressToXrplAccount(evmWallet.address)
+  // );
   // console.log("EVM address representation: " + xrplAccountToEvmAddress('wallet2.classicAddress'))
 
   // // -----------
@@ -118,7 +118,7 @@ async function main() {
     ethersClient
   );
   const witnessServers = await bridgeContract.getWitnesses();
-  console.log(witnessServers);
+  // console.log(witnessServers);
 
   // const contractTransaction = await bridgeContract.connect(evmWallet).createClaimId(xrplAccountToEvmAddress(wallet1.address), {
   //     value: ethers.utils.parseEther(xrpl.dropsToXrp(bridgeDataSignatureReward)),
@@ -175,7 +175,7 @@ async function main() {
   // console.log(commitResult)
 
   // claimIDNumber = commitResult.result.XChainClaimID
-  console.log(`Claim ID for the transfer: ${claimIDNumber}`);
+  // console.log(`Claim ID for the transfer: ${claimIDNumber}`);
 
   const claimTx = {
     TransactionType: "XChainClaim",
@@ -190,8 +190,8 @@ async function main() {
     wallet: wallet1,
   });
 
-  console.log("Claim result");
-  console.log(claimResult);
+  // console.log("Claim result");
+  // console.log(claimResult);
 
   lockingClient.disconnect();
 }

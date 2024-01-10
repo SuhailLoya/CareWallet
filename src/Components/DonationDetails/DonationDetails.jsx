@@ -48,11 +48,11 @@ const DonationDetails = () => {
   const { sharedState, setSharedState } = useSharedState();
 
   async function getData() {
-    console.log(sharedState.initialised);
+    // console.log(sharedState.initialised);
     if (!sharedState.initialised) {
-      console.log("fetching fundraiser information");
+      // console.log("fetching fundraiser information");
       const fundraisers = await retrieveFundraisers();
-      console.log(fundraisers);
+      // console.log(fundraisers);
       setSharedState({
         initialised: true,
         fundraisers,
@@ -284,7 +284,6 @@ const DonationDetails = () => {
                   style={{ cursor: "pointer", marginRight: "10px" }}
                 /> */}
                     <ShareIcon
-                      onClick={() => console.log("share")}
                       style={{ cursor: "pointer", marginRight: "10px" }}
                     />
                   </div>

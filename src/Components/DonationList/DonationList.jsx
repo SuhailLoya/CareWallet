@@ -18,17 +18,17 @@ const DonationPage = () => {
   const { sharedState, setSharedState } = useSharedState();
 
   async function getData() {
-    console.log(sharedState.initialised);
+    // console.log(sharedState.initialised);
     if (!sharedState.initialised) {
-      console.log("fetching fundraiser information");
+      // console.log("fetching fundraiser information");
       const fundraisers = await retrieveFundraisers();
-      console.log(fundraisers);
+      // console.log(fundraisers);
       setSharedState({
         initialised: true,
         fundraisers,
       });
     } else {
-      //   console.log("Initialised liao");
+      // console.log("Initialised liao");
     }
   }
 
@@ -36,7 +36,7 @@ const DonationPage = () => {
     getData();
   }, [sharedState.initialised]);
 
-  console.log(sharedState);
+  // console.log(sharedState);
 
   return (
     <div style={{ backgroundColor: "#f5f5f5" }}>

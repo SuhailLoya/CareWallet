@@ -11,7 +11,7 @@ const deploy = async () => {
   web3.eth.accounts.wallet.add(myAccount);
   const deployerAccount = myAccount.address;
 
-  console.log("Deploying contract from account:", deployerAccount);
+  // console.log("Deploying contract from account:", deployerAccount);
 
   const Contract = new web3.eth.Contract(contractABI);
   const deployTx = Contract.deploy({
@@ -32,11 +32,11 @@ const deploy = async () => {
     PRIVATE_KEY
   );
 
-  console.log("Sending transaction...");
+  // console.log("Sending transaction...");
   const createReceipt = await web3.eth.sendSignedTransaction(
     createTransaction.rawTransaction
   );
-  console.log("Contract deployed at address:", createReceipt.contractAddress);
+  // console.log("Contract deployed at address:", createReceipt.contractAddress);
 };
 
 deploy().catch(console.error);
