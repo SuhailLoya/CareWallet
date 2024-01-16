@@ -34,7 +34,7 @@ export default function CreateDonation() {
         try {
             // Replace these parameters with the actual values you want to pass
             // const owner = "0x0A1be59620527b6e660D54dFe1Be664258c1DbD7";
-            const owner = hospitalWalletAddress;
+            const owner = formData.hospitalWalletAddress;
             const title = formData.title;
             const description = formData.description;
             const amountNeeded = formData.target; // example value
