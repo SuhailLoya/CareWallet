@@ -10,7 +10,7 @@
 
 .chatHeader {
   background-color: #f5f5f5;
-  padding: 10px;
+  padding: 5px; /* Reduced header padding */
   text-align: center;
   border-bottom: 1px solid #ddd;
 }
@@ -118,10 +118,10 @@
 .messageDonor {
   background: linear-gradient(
     to right,
-    #880e4f,
-    rgb(195, 21, 79)
-  ); /* Gradient background */
-  color: #ffffff;
+    #95f1fd,
+    #5fb2c1
+  ); /* Gradient background for donor messages (cyan) */
+  color: #000000; /* Black text color */
   align-self: flex-end;
   text-align: right;
 }

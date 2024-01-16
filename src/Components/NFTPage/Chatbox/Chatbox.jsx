@@ -10,14 +10,14 @@ const Chatbox = props => {
           </div>
           <div className={classes.chatMessages}>
             <div className={classes.messageRecipient}>
-              <p className={classes.senderName}>Recipient:</p>
+              {/* <p className={classes.senderName}>Recipient:</p> */}
               <p>
                 Thank you so much for donating to my crowdfunding; it really
                 helped me out.
               </p>
             </div>
             <div className={classes.messageDonor}>
-              <p className={classes.senderName}>Donor:</p>
+              {/* <p className={classes.senderName}>Donor:</p> */}
               <p>No problem, how have you been doing?</p>
             </div>
           </div>
