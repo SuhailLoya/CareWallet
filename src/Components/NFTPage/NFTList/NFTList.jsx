@@ -1,5 +1,5 @@
 import classes from './NFTList.module.css'
-import NFTPhoto from '../../../assets/myNFt.png'
+import NFTPhoto from '../../../assets/myNFT.png'
 import foilImg from '../../../assets/foilimg.jpg'
 import { useState } from 'react';
 import Chatbox from '../Chatbox/Chatbox';
