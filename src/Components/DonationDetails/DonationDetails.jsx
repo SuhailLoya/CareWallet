@@ -119,20 +119,22 @@ const DonationDetails = () => {
           setIsSuccess={setIsSuccess}
           setisFail={setisFail}
           setIsLoading={setIsLoading}
+          amountNeeded={donDet.amountNeeded}
+          amtCollected={donDet.amountCollected}
         />
       )}
       { 
         isSuccess && 
         <Alert severity="success">
           <AlertTitle>Success</AlertTitle>
-            This is a success alert — <strong>You have successfully donated!</strong>
+            <strong>You have successfully donated!</strong>
         </Alert>
       }
       {
         isFail && 
         <Alert severity="warning">
           <AlertTitle>Warning</AlertTitle>
-          This is a warning alert — <strong>Failed to donate to crowdfunding!</strong>
+          <strong>Failed to donate to crowdfunding! You might be seeing this if you donated beyond the needed amount.</strong>
         </Alert>
       }
       <Stack spacing={4}>

@@ -15,6 +15,9 @@ export default function DonationForm(props) {
       
       if (window.ethereum) {
         try {
+          if(formData.target > props.amountNeeded){
+            props.setisFail(true);
+          }
           // console.log(props.address);
           // console.log(formData.target);
           // Request account access
