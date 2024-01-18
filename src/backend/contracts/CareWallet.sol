@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.19;
 
-contract Test {
+contract CareWallet {
     address owner; //hospital
     address[] donors;
     uint256[] donations;

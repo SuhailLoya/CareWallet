@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.19;
 
-import { Test } from "./Test.sol";
+import { CareWallet } from "./CareWallet.sol";
 
 contract CareWalletFactory {
 
@@ -15,11 +15,11 @@ contract CareWalletFactory {
     }
 
     address[] public fundraiserAddresses;
-    Test[] public listOf_CareWallets;
+    CareWallet[] public listOf_CareWallets;
     uint256 numOf_CareWallets;
 
     function create_CareWallet(address _owner, string memory _title, string memory _description, uint256 _amountNeeded, uint256 _deadline) public {
-        Test new_CareWallet = new Test(_owner, _title, _description, _amountNeeded, _deadline);
+        CareWallet new_CareWallet = new CareWallet(_owner, _title, _description, _amountNeeded, _deadline);
         listOf_CareWallets.push(new_CareWallet);
 
         fundraiserAddresses.push(address(new_CareWallet));
@@ -29,7 +29,7 @@ contract CareWalletFactory {
     function get_CareWallet() public view returns (Fundraiser[] memory) {
         Fundraiser[] memory allFundraisers = new Fundraiser[](numOf_CareWallets);
         for(uint i = 0; i < numOf_CareWallets; i++) {
-            Test tmp = Test(payable (fundraiserAddresses[i]));
+            CareWallet tmp = CareWallet(payable (fundraiserAddresses[i]));
             allFundraisers[i] = Fundraiser(
                 fundraiserAddresses[i],
                 tmp.title(),
